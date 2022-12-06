@@ -26,7 +26,9 @@ const List = (props) => {
         key={mov}
       >
         <div className="d-flex align-items-center justify-content-between">
-          <p className="m-0">{data.nots}</p>
+          <p className="m-0">
+            {data.nots} <small className="text-danger mx-4">~{data.time}</small>
+          </p>
           <div>
             <Button
               btnrole={removeBtn}

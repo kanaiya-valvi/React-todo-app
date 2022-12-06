@@ -13,7 +13,9 @@ const Form = () => {
     if (input.length === 0) {
       setValid(true);
     } else {
-      const item = { nots: input, status: "panding" };
+      const dateTime = new Date();
+      const nowTime = dateTime.toLocaleString();
+      const item = { nots: input, time: nowTime, status: "panding" };
       setList([...list, item]);
       setInput("");
     }
