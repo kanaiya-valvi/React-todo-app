@@ -4,17 +4,23 @@ const Form = () => {
   const [list, setList] = useState("");
   const [input, setInput] = useState("");
   const [newData, setNewData] = useState(false);
+  const [valid, setValid] = useState(false);
   useEffect(() => {
     setNewData(false);
   }, [newData]);
   const submitForm = (event) => {
     event.preventDefault();
-    const item = { nots: input, status: "panding" };
-    setList([...list, item]);
-    setInput("");
+    if (input.length === 0) {
+      setValid(true);
+    } else {
+      const item = { nots: input, status: "panding" };
+      setList([...list, item]);
+      setInput("");
+    }
   };
   const inputHandler = (event) => {
     setInput(event.target.value);
+    setValid(false);
   };
 
   const removeItemHeader = (id) => {
@@ -39,6 +45,11 @@ const Form = () => {
             onChange={inputHandler}
             value={input}
           />
+          {valid && (
+            <p className="text-danger">
+              <small>* Sumthing is wrong!</small>
+            </p>
+          )}
         </div>
         <button className="btn btn-primary col">Add TODO</button>
       </form>
